@@ -50,11 +50,11 @@ Temporary Items
 # =============== #
 # Unity generated #
 # =============== #
-Temp/
-Obj/
-UnityGenerated/
-Library/
-Assets/AssetStoreTools*
+Pong3DGame/Temp/
+Pong3DGame/Obj/
+Pong3DGame/UnityGenerated/
+Pong3DGame/Library/
+Pong3DGame/Assets/AssetStoreTools*
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
