@@ -25,7 +25,7 @@ public class Ball_behavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        zSpeed = Mathf.Sign(Random.value * 2F - 1F) * 0.1F;
+        zSpeed = Mathf.Sign(Random.value * 2F - 1F) * 0.4F; //0.1F
         ySpeed = Random.value * 0.1F;
         xSpeed = Random.value * 0.1F;
 
@@ -51,7 +51,7 @@ public class Ball_behavior : MonoBehaviour {
         }
         if (x-ballSize < left)
         {
-            x = left + ballSize;
+            x = left - ballSize;
             xSpeed = Mathf.Abs(xSpeed);
         }
         if (y+ballSize < lower)
