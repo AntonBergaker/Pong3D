@@ -20,17 +20,22 @@ public class Ball_behavior : MonoBehaviour {
     private float lower;
     private float left;
     private float right;
+    private float paddleSize;
+    private float ballSize;
 
 	// Use this for initialization
 	void Start () {
-        zSpeed = Mathf.Sign(Random.value * 2F - 1F);
-        ySpeed = Random.value;
-        xSpeed = Random.value;
+        zSpeed = Mathf.Sign(Random.value * 2F - 1F) * 0.1F;
+        ySpeed = Random.value * 0.1F;
+        xSpeed = Random.value * 0.1F;
 
         upper = upperBound.position.y;
         lower = lowerBound.position.y;
         left = leftBound.position.x;
         right = rightBound.position.x;
+
+        paddleSize = paddle.localScale.x / 2F;
+        ballSize = body.localScale.x / 2F;
 	}
 	
 	// Update is called once per frame
@@ -39,35 +44,50 @@ public class Ball_behavior : MonoBehaviour {
         y += ySpeed;
         z += zSpeed;
 
-        if (x > right)
+        if (x+ballSize > right)
         {
-            x = right;
+            x = right+ballSize;
             xSpeed = -Mathf.Abs(xSpeed);
         }
-        if (x < left)
+        if (x-ballSize < left)
         {
-            x = left;
+            x = left + ballSize;
             xSpeed = Mathf.Abs(xSpeed);
         }
-        if (y < lower)
+        if (y+ballSize < lower)
         {
-            y = lower;
+            y = lower+ballSize;
             ySpeed = Mathf.Abs(ySpeed);
         }
-        if (y > upper)
+        if (y-ballSize > upper)
         {
-            y = upper;
+            y = upper-ballSize;
             ySpeed = -Mathf.Abs(ySpeed);
         }
+
+
+        if (z > paddle.position.z)
+        {
+            if (x > paddle.position.x - paddleSize && x < paddle.position.x + paddleSize)
+            {
+                if (y > paddle.position.y - paddleSize && y < paddle.position.y + paddleSize)
+                {
+                    Debug.Log("BOUNCE");
+                    zSpeed = -0.1F;
+                }
+            }
+        }
+
+        //backup bounce
         if (z > 60)
         {
             z = 60;
-            zSpeed = -1;
+            zSpeed = -0.1F;
         }
         if (z < -60)
         {
             z = -60;
-            zSpeed = 1;
+            zSpeed = 0.1F;
         }
 
         body.transform.position = new Vector3(x, y, z);
