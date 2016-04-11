@@ -10,6 +10,9 @@ public class Ball_behavior : MonoBehaviour {
     public Transform leftBound;
     public Transform rightBound;
 
+    private bool leftDir = true;
+    private bool lowerDir = true;
+
     private float xSpeed;
     private float ySpeed;
     private float zSpeed;
@@ -40,7 +43,7 @@ public class Ball_behavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        x += xSpeed;
+        /*x += xSpeed;
         y += ySpeed;
         z += zSpeed;
 
@@ -63,7 +66,36 @@ public class Ball_behavior : MonoBehaviour {
         {
             y = upper-ballSize;
             ySpeed = -Mathf.Abs(ySpeed);
+        }*/
+
+
+        if (x - ballSize < leftBound.transform.position.x + xSpeed)
+        {
+            leftDir = false;
         }
+
+        if (x + ballSize > rightBound.transform.position.x + xSpeed)
+        {
+            leftDir = true;
+        }
+
+        if (y - ballSize < lowerBound.transform.position.y + ySpeed)
+        {
+            lowerDir = false;
+        }
+
+        if (y + ballSize > upperBound.transform.position.y + ySpeed)
+        {
+            lowerDir = true;
+        }
+
+        Debug.Log(lowerDir + " " + ySpeed + " " + y + ballSize + " " + upper + ySpeed);
+
+        if (leftDir) x += -Mathf.Abs(xSpeed);
+        if (!leftDir) x += Mathf.Abs(xSpeed);
+        if (lowerDir) y += -Mathf.Abs(ySpeed);
+        if (!lowerDir) y += Mathf.Abs(ySpeed);
+
 
 
         if (z > paddle.position.z)
