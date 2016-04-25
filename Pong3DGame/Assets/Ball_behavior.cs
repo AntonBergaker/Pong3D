@@ -4,17 +4,14 @@ using System.Collections;
 public class Ball_behavior : MonoBehaviour {
 
     public Transform body;
-    public Transform paddle;
+    public Transform paddle1;
+    public Transform paddle2;
     public Transform upperBound;
     public Transform lowerBound;
     public Transform leftBound;
     public Transform rightBound;
     public Transform forwardBound;
     public Transform backBound;
-
-    private bool leftDir = true;
-    private bool lowerDir = true;
-    private bool forwardDir = true;
 
     private float xSpeed;
     private float ySpeed;
@@ -47,7 +44,7 @@ public class Ball_behavior : MonoBehaviour {
         back = backBound.position.z;
         forward = forwardBound.position.z;
 
-        paddleSize = paddle.localScale.x / 2F;
+        paddleSize = paddle1.localScale.x / 2F;
         ballSize = body.localScale.x / 2F;
 	}
 	
@@ -88,17 +85,28 @@ public class Ball_behavior : MonoBehaviour {
             zSpeed = -Mathf.Abs(zSpeed);
         }
 
-        if (Mathf.Abs(z - paddle.position.z) < 2)
+        if (Mathf.Abs(z - paddle1.position.z) < 2)
         {
-            if (Mathf.Abs(x - paddle.position.x) < paddleSize)
+            if (Mathf.Abs(x - paddle1.position.x) < paddleSize)
             {
-                if (Mathf.Abs(y - paddle.position.y) < paddleSize)
+                if (Mathf.Abs(y - paddle1.position.y) < paddleSize)
                 {
                     zSpeed = -Mathf.Abs(zSpeed);
                 }
             }
         }
-        
+
+        if (Mathf.Abs(z - paddle2.position.z) < 2)
+        {
+            if (Mathf.Abs(x - paddle2.position.x) < paddleSize)
+            {
+                if (Mathf.Abs(y - paddle2.position.y) < paddleSize)
+                {
+                    zSpeed = Mathf.Abs(zSpeed);
+                }
+            }
+        }
+
         body.transform.position = new Vector3(x, y, z);
     }
 }
