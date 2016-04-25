@@ -13,12 +13,19 @@ public class Ball_behavior : MonoBehaviour {
     public Transform forwardBound;
     public Transform backBound;
 
-    private float xSpeed;
-    private float ySpeed;
-    private float zSpeed;
-    private float x;
-    private float y;
-    private float z;
+    [HideInInspector]
+    public float xSpeed;
+    [HideInInspector]
+    public float ySpeed;
+    [HideInInspector]
+    public float zSpeed;
+    [HideInInspector]
+    public float x;
+    [HideInInspector]
+    public float y;
+    [HideInInspector]
+    public float z;
+
     private float upper;
     private float lower;
     private float left;
