@@ -31,11 +31,11 @@ public class Ball_behavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //zSpeed = Mathf.Sign(Random.value * 2F - 1F) * 0.4F; //0.1F
-        zSpeed = 0.1F;
+        zSpeed = 1.5F;
         //ySpeed = Random.value * 0.1F;
-        ySpeed = 0.3F;
+        ySpeed = 0.7F;
         //xSpeed = Random.value * 0.1F;
-        xSpeed = 0.2F;
+        xSpeed = 1.0F;
 
         upper = upperBound.position.y;
         lower = lowerBound.position.y;
@@ -85,22 +85,22 @@ public class Ball_behavior : MonoBehaviour {
             zSpeed = -Mathf.Abs(zSpeed);
         }
 
-        if (Mathf.Abs(z - paddle1.position.z) < 2)
+		if (Mathf.Abs(z - paddle1.position.z) < 2 + ballSize)
         {
-            if (Mathf.Abs(x - paddle1.position.x) < paddleSize)
+			if (Mathf.Abs(x - paddle1.position.x) < paddleSize + ballSize)
             {
-                if (Mathf.Abs(y - paddle1.position.y) < paddleSize)
+				if (Mathf.Abs(y - paddle1.position.y) < paddleSize + ballSize)
                 {
                     zSpeed = -Mathf.Abs(zSpeed);
                 }
             }
         }
 
-        if (Mathf.Abs(z - paddle2.position.z) < 2)
+        if (Mathf.Abs(z - paddle2.position.z) < 2 + ballSize)
         {
-            if (Mathf.Abs(x - paddle2.position.x) < paddleSize)
+			if (Mathf.Abs(x - paddle2.position.x) < paddleSize + ballSize)
             {
-                if (Mathf.Abs(y - paddle2.position.y) < paddleSize)
+				if (Mathf.Abs(y - paddle2.position.y) < paddleSize + ballSize)
                 {
                     zSpeed = Mathf.Abs(zSpeed);
                 }
