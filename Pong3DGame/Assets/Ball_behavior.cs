@@ -34,18 +34,18 @@ public class Ball_behavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //zSpeed = Mathf.Sign(Random.value * 2F - 1F) * 0.4F; //0.1F
-        zSpeed = 0.6F;
+        zSpeed = 0.1F;
         //ySpeed = Random.value * 0.1F;
-        ySpeed = 0.8F;
+        ySpeed = 0.3F;
         //xSpeed = Random.value * 0.1F;
-        xSpeed = 0.9F;
+        xSpeed = 0.2F;
 
         upper = upperBound.position.y;
         lower = lowerBound.position.y;
         left = leftBound.position.x;
         right = rightBound.position.x;
-        back = backBound.position.x;
-        forward = forwardBound.position.x;
+        back = backBound.position.z;
+        forward = forwardBound.position.z;
 
         paddleSize = paddle.localScale.x / 2F;
         ballSize = body.localScale.x / 2F;
@@ -53,128 +53,51 @@ public class Ball_behavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        /*x += xSpeed;
+        x += xSpeed;
         y += ySpeed;
         z += zSpeed;
 
         if (x+ballSize > right)
         {
-            x = right+ballSize;
+            x = right-ballSize;
             xSpeed = -Mathf.Abs(xSpeed);
         }
         if (x-ballSize < left)
         {
-            x = left - ballSize;
+            x = left + ballSize;
             xSpeed = Mathf.Abs(xSpeed);
         }
-        if (y+ballSize < lower)
+        if (y-ballSize < lower)
         {
             y = lower+ballSize;
             ySpeed = Mathf.Abs(ySpeed);
         }
-        if (y-ballSize > upper)
+        if (y+ballSize > upper)
         {
             y = upper-ballSize;
             ySpeed = -Mathf.Abs(ySpeed);
-        }*/
-
-
-        if (x - ballSize < leftBound.transform.position.x + xSpeed)
+        }
+        if (z - ballSize < forward)
         {
-            leftDir = false;
+            z = forward + ballSize;
+            zSpeed = Mathf.Abs(zSpeed);
+        }
+        if (z + ballSize > back)
+        {
+            z = back - ballSize;
+            zSpeed = -Mathf.Abs(zSpeed);
         }
 
-        if (x + ballSize > rightBound.transform.position.x + xSpeed)
+        if (Mathf.Abs(z - paddle.position.z) < 2)
         {
-            leftDir = true;
-        }
-
-        if (y - ballSize < lowerBound.transform.position.y + ySpeed)
-        {
-            lowerDir = false;
-        }
-
-        if (y + ballSize > upperBound.transform.position.y + ySpeed)
-        {
-            lowerDir = true;
-        }
-
-        if (z - ballSize < forwardBound.transform.position.z + zSpeed)
-        {
-            forwardDir = false;
-        }
-
-        if (z + ballSize > backBound.transform.position.z + zSpeed)
-        {
-            forwardDir = true;
-        }
-
-        if (z > paddle.position.z - 0.5 && z < paddle.position.z + 0.5)
-        {
-            if (x > paddle.position.x - paddleSize && x < paddle.position.x + paddleSize)
+            if (Mathf.Abs(x - paddle.position.x) < paddleSize)
             {
-                if (y > paddle.position.y - paddleSize && y < paddle.position.y + paddleSize)
+                if (Mathf.Abs(y - paddle.position.y) < paddleSize)
                 {
-                    forwardDir = true;
+                    zSpeed = -Mathf.Abs(zSpeed);
                 }
             }
         }
-
-        if (z > paddle2.position.z - 0.5 && z < paddle.position.z + 0.5)
-        {
-            if (x > paddle.position.x - paddleSize && x < paddle.position.x + paddleSize)
-            {
-                if (y > paddle.position.y - paddleSize && y < paddle.position.y + paddleSize)
-                {
-                    forwardDir = true;
-                }
-            }
-        }
-
-        /*if (z - ballSize < backBound.transform.position.z + zSpeed)
-        {
-            //goal
-        }
-
-        if (z + ballSize > forwardBound.transform.position.z + zSpeed)
-        {
-            //goal
-        }*/
-
-        Debug.Log(forwardDir + " " + zSpeed + " " + z + ballSize + " " + forward + zSpeed);
-
-        if (leftDir) x += -Mathf.Abs(xSpeed);
-        if (!leftDir) x += Mathf.Abs(xSpeed);
-        if (lowerDir) y += -Mathf.Abs(ySpeed);
-        if (!lowerDir) y += Mathf.Abs(ySpeed);
-        if (forwardDir) z += -Mathf.Abs(zSpeed);
-        if (!forwardDir) z += Mathf.Abs(zSpeed);
-
-
-
-        /*if (z > paddle.position.z)
-        {
-            if (x > paddle.position.x - paddleSize && x < paddle.position.x + paddleSize)
-            {
-                if (y > paddle.position.y - paddleSize && y < paddle.position.y + paddleSize)
-                {
-                    Debug.Log("BOUNCE");
-                    //zSpeed = -0.1F;
-                }
-            }
-        }*/
-
-        //backup bounce
-        /*if (z > 60)
-        {
-            z = 60;
-            zSpeed = -0.1F;
-        }
-        if (z < -60)
-        {
-            z = -60;
-            zSpeed = 0.1F;
-        }*/
         
         body.transform.position = new Vector3(x, y, z);
     }
