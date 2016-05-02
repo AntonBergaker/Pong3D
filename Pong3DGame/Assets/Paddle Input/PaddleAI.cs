@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PaddleAI : MonoBehaviour {
+public class PaddleAI : PaddleInputParent {
+
+    public BallBehavior ballVars;
+    public Movement movementVars;
+    public int smart;
 
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public override Vector2 GetInput()
+    {
+        float x = Mathf.Sign(ballVars.x - movementVars.body.position.x);
+        float y = Mathf.Sign(ballVars.y - movementVars.body.position.y);
+
+
+        return new Vector2(x,y);
+    }
 }

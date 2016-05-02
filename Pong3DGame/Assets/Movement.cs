@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour {
     public Transform leftBound;
     public Transform rightBound;
 
+    public PaddleInputParent inputScript;
 
     public float bound;
 
@@ -29,9 +30,10 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Vector2 input = inputScript.GetInput();
 
-        float moveX =-Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        float moveX = input.x;
+        float moveY = input.y;
 
         xSpeed = Mathf.MoveTowards(xSpeed, 0, acceleration * Time.deltaTime);
         ySpeed = Mathf.MoveTowards(ySpeed, 0, acceleration * Time.deltaTime);
