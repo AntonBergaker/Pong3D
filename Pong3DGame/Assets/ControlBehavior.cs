@@ -7,8 +7,8 @@ public class ControlBehavior : MonoBehaviour {
     public float ballStartSpeed;
     public float ballSecondIncrease;
 
-    public int player1Score;
-    public int player2Score;
+    public int player1Score = 0;
+    public int player2Score = 0;
 
     public GUIStyle scoreFont;
 
@@ -25,22 +25,22 @@ public class ControlBehavior : MonoBehaviour {
         ballTimer+=Time.deltaTime;
         if (Mathf.Abs(ballVars.z) > 70)
         {
+            if (ballVars.z > 0)
+            {
+				ballVars.zSpeed = -ballStartSpeed;
+                player1Score++;
+            }
+            else
+            {
+				ballVars.zSpeed = ballStartSpeed;
+                player2Score++;
+            }
             ballVars.z = 0;
             ballVars.x = 0;
             ballVars.y = 0;
-			ballVars.xSpeed = 0.0F;
-			ballVars.ySpeed = 0.0F;
-			ballVars.zSpeed = 0.0F;
+            ballVars.xSpeed = 0.0F;
+            ballVars.ySpeed = 0.0F;
             ballTimer = 0;
-
-            if (ballVars.z > 70)
-            {
-				ballVars.zSpeed = -ballStartSpeed;
-            }
-            if (ballVars.z < -70)
-            {
-				ballVars.zSpeed = ballStartSpeed;
-            }
         }
 
         ballVars.zSpeed = Mathf.Sign(ballVars.zSpeed) * (ballStartSpeed + ballTimer * ballSecondIncrease);
