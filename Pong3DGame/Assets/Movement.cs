@@ -2,13 +2,13 @@
 using System.Collections;
 
 public class Movement : MonoBehaviour {
-
     public Transform body;
 
     public Transform upperBound;
     public Transform lowerBound;
     public Transform leftBound;
     public Transform rightBound;
+
 
     public float bound;
 
@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         float moveX =-Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
