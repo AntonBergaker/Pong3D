@@ -343,8 +343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 330430328}
-  paddle1: {fileID: 1973669240}
-  paddle2: {fileID: 495205958}
+  paddlePlayer: {fileID: 1973669240}
+  paddleAI: {fileID: 495205958}
   upperBound: {fileID: 755597493}
   lowerBound: {fileID: 1207617372}
   leftBound: {fileID: 4397531}
@@ -1982,7 +1982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 330430323}
-  ballStartSpeed: 1
+  ballStartSpeed: 0.5
   ballSecondIncrease: 0.2
 --- !u!4 &438159901
 Transform:
@@ -3397,7 +3397,7 @@ GameObject:
   - 114: {fileID: 1973669236}
   - 114: {fileID: 1973669241}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -28,15 +28,18 @@ public class ControlBehavior : MonoBehaviour {
             ballVars.z = 0;
             ballVars.x = 0;
             ballVars.y = 0;
+			ballVars.xSpeed = 0.0F;
+			ballVars.ySpeed = 0.0F;
+			ballVars.zSpeed = 0.0F;
             ballTimer = 0;
 
             if (ballVars.z > 70)
             {
-                ballVars.zSpeed = -1;
+				ballVars.zSpeed = -ballStartSpeed;
             }
             if (ballVars.z < -70)
             {
-                ballVars.zSpeed = 1;
+				ballVars.zSpeed = ballStartSpeed;
             }
         }
 
