@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Follow_ball : MonoBehaviour {
+public class FollowBall : MonoBehaviour {
 
     public Transform ball;
 	

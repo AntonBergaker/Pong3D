@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ball_behavior : MonoBehaviour {
+public class BallBehavior : MonoBehaviour {
 
     public Transform body;
     public Transform paddle1;
@@ -92,7 +92,7 @@ public class Ball_behavior : MonoBehaviour {
             zSpeed = -Mathf.Abs(zSpeed);
         }
 
-		if (Mathf.Abs(z - paddle1.position.z) < 2 + ballSize)
+        if (Mathf.Abs(z - paddle1.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always bounces
         {
 			if (Mathf.Abs(x - paddle1.position.x) < paddleSize + ballSize)
             {
@@ -103,7 +103,7 @@ public class Ball_behavior : MonoBehaviour {
             }
         }
 
-        if (Mathf.Abs(z - paddle2.position.z) < 2 + ballSize)
+        if (Mathf.Abs(z - paddle2.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always bounces
         {
 			if (Mathf.Abs(x - paddle2.position.x) < paddleSize + ballSize)
             {

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy_AI : MonoBehaviour {
+public class EnemyAI : MonoBehaviour {
 
     public Transform ball;
-    public Ball_behavior ballVars;
+    public BallBehavior ballVars;
     public float bounds;
 
 	// Use this for initialization

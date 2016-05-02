@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Camera_follow : MonoBehaviour {
+public class CameraFollow : MonoBehaviour {
 
     public Transform body;
     public Transform ball;
