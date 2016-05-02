@@ -18,21 +18,20 @@ public class ControlBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         ballTimer+=Time.deltaTime;
-	    if (ballVars.z > 70)
+        if (Mathf.Abs(ballVars.z) > 70)
         {
             ballVars.z = 0;
             ballVars.x = 0;
             ballVars.y = 0;
-            ballVars.zSpeed = -1;
             ballTimer = 0;
-        }
-        if (ballVars.z < -70)
-        {
-            ballVars.z = 0;
-            ballVars.x = 0;
-            ballVars.y = 0;
-            ballVars.zSpeed = 1;
-            ballTimer = 0;
+            if (ballVars.z > 70)
+            {
+                ballVars.zSpeed = -1;
+            }
+            if (ballVars.z < -70)
+            {
+                ballVars.zSpeed = 1;
+            }
         }
 
         ballVars.zSpeed = Mathf.Sign(ballVars.zSpeed) * (ballStartSpeed + ballTimer * ballSecondIncrease);
