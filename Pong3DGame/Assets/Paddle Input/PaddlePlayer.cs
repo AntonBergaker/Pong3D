@@ -8,6 +8,5 @@ public class PaddlePlayer : PaddleInputParent {
         float y = Input.GetAxisRaw("Vertical");
 
         return new Vector2(x, y);
-        Debug.Log("Test");
     }
 }
