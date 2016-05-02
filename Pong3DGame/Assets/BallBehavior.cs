@@ -4,8 +4,8 @@ using System.Collections;
 public class BallBehavior : MonoBehaviour {
 
     public Transform body;
-    public Transform paddle1;
-    public Transform paddle2;
+    public Transform paddlePlayer;
+    public Transform paddleAI;
     public Transform upperBound;
     public Transform lowerBound;
     public Transform leftBound;
@@ -51,7 +51,7 @@ public class BallBehavior : MonoBehaviour {
         back = backBound.position.z;
         forward = forwardBound.position.z;
 
-        paddleSize = paddle1.localScale.x / 2F;
+        paddleSize = paddlePlayer.localScale.x / 2F;
         ballSize = body.localScale.x / 2F;
 	}
 	
@@ -92,24 +92,28 @@ public class BallBehavior : MonoBehaviour {
             zSpeed = -Mathf.Abs(zSpeed);
         }
 
-        if (Mathf.Abs(z - paddle1.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always bounces
+        if (Mathf.Abs(z - paddlePlayer.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always bounces
         {
-			if (Mathf.Abs(x - paddle1.position.x) < paddleSize + ballSize)
+			if (Mathf.Abs(x - paddlePlayer.position.x) < paddleSize + ballSize)
             {
-				if (Mathf.Abs(y - paddle1.position.y) < paddleSize + ballSize)
+				if (Mathf.Abs(y - paddlePlayer.position.y) < paddleSize + ballSize)
                 {
                     zSpeed = -Mathf.Abs(zSpeed);
+					xSpeed = x - paddlePlayer.position.x;
+					ySpeed = y - paddlePlayer.position.y;
                 }
             }
         }
 
-        if (Mathf.Abs(z - paddle2.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always bounces
+        if (Mathf.Abs(z - paddleAI.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always bounces
         {
-			if (Mathf.Abs(x - paddle2.position.x) < paddleSize + ballSize)
+			if (Mathf.Abs(x - paddleAI.position.x) < paddleSize + ballSize)
             {
-				if (Mathf.Abs(y - paddle2.position.y) < paddleSize + ballSize)
+				if (Mathf.Abs(y - paddleAI.position.y) < paddleSize + ballSize)
                 {
                     zSpeed = Mathf.Abs(zSpeed);
+					xSpeed = x - paddleAI.position.x;
+					ySpeed = y - paddleAI.position.y;
                 }
             }
         }
