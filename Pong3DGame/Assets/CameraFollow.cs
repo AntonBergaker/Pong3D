@@ -18,9 +18,9 @@ public class CameraFollow : MonoBehaviour {
         float y = body.position.y;
         float z = body.position.z;
 
-        float targetX;
-        float targetY;
-        targetX = Mathf.Lerp(ball.position.x  , 0, 0.5F);
+        float targetX, targetY;
+
+        targetX = Mathf.Lerp(ball.position.x  , 0, 0.5F); //get the center point of ball, paddle and the middle
         targetX = Mathf.Lerp(paddle.position.x, targetX, 0.33F);
 
         targetY = Mathf.Lerp(ball.position.y, 0, 0.5F);
@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour {
         x = Mathf.Lerp(targetX, x, 1 - Time.deltaTime); //not framerate independant but close enough
         y = Mathf.Lerp(targetY, y, 1 - Time.deltaTime);
 
-        body.position = new Vector3(x, y, z);
+        body.position = new Vector3(x, y, z); //move the camera to the x, y and z
         
         body.LookAt(new Vector3(targetX, targetY, ball.position.z));
 	}

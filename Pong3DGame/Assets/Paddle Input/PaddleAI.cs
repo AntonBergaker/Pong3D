@@ -10,8 +10,8 @@ public class PaddleAI : PaddleInputParent {
 	// Use this for initialization
     public override Vector2 GetInput()
     {
-        float x = Mathf.Sign(ballVars.x - movementVars.body.position.x);
-        float y = Mathf.Sign(ballVars.y - movementVars.body.position.y);
+        float x = Mathf.Clamp(ballVars.x - movementVars.body.position.x,-1,1);
+        float y = Mathf.Clamp(ballVars.y - movementVars.body.position.y,-1,1);
 
 
         return new Vector2(x,y);

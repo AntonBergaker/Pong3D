@@ -23,36 +23,36 @@ public class ControlBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         ballTimer+=Time.deltaTime;
-        if (Mathf.Abs(ballVars.z) > 70)
+        if (Mathf.Abs(ballVars.z) > 80) //if the ball is outside the playfield
         {
-            if (ballVars.z > 0)
+            if (ballVars.z > 0 && ballVars.zSpeed > 0) //give players points
             {
 				ballVars.zSpeed = -ballStartSpeed;
                 player1Score++;
             }
-            else
+            else if (ballVars.z < 0 && ballVars.zSpeed < 0)
             {
 				ballVars.zSpeed = ballStartSpeed;
                 player2Score++;
             }
-            ballVars.z = 0;
-            ballVars.x = 0;
-            ballVars.y = 0;
-            ballVars.xSpeed = 0.0F;
-            ballVars.ySpeed = 0.0F;
+            //ballVars.z = 0; //reset the ball position and speed
+            //ballVars.x = 0;
+            //ballVars.y = 0;
+            ballVars.xSpeed = Random.Range(-0.2F, 0.2F);
+            ballVars.ySpeed = Random.Range(-0.2F, 0.2F);
             ballTimer = 0;
         }
 
-        ballVars.zSpeed = Mathf.Sign(ballVars.zSpeed) * (ballStartSpeed + ballTimer * ballSecondIncrease);
+        ballVars.zSpeed = Mathf.Sign(ballVars.zSpeed) * (ballStartSpeed + ballTimer * ballSecondIncrease); //set the ball speed after the timer
 	}
 
     void OnGUI()
     {
-        GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Screen.width / 1920.0f, Screen.height / 1080.0f, 1));
+        GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Screen.width / 1920F, Screen.height / 1080F, 1));
 
 
-        GUI.Label(new Rect(960, 30, 1, 1), "-", scoreFont);
-        GUI.Label(new Rect(960 - 80, 30, 1, 1), player1Score.ToString(), scoreFont);
-        GUI.Label(new Rect(960 + 80, 30, 1, 1), player2Score.ToString(), scoreFont);
+        GUI.Label(new Rect(960, 90, 1, 1), "-", scoreFont);
+        GUI.Label(new Rect(960 - 80, 90, 1, 1), player1Score.ToString(), scoreFont);
+        GUI.Label(new Rect(960 + 80, 90, 1, 1), player2Score.ToString(), scoreFont);
     }
 }

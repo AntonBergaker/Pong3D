@@ -37,11 +37,8 @@ public class BallBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //zSpeed = Mathf.Sign(Random.value * 2F - 1F) * 0.4F; //0.1F
         zSpeed = 0.5F;
-        //ySpeed = Random.value * 0.1F;
         ySpeed = 0.0F;
-        //xSpeed = Random.value * 0.1F;
         xSpeed = 0.0F;
 
         upper = upperBound.position.y;
