@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PaddleAIPerfect : PaddleInputParent
+public class PaddleAIImpossible : PaddleInputParent
 {
     public BallBehavior ballVars;
     public Movement movementVars;
@@ -50,19 +50,25 @@ public class PaddleAIPerfect : PaddleInputParent
         }
         else
         {
+            //cleanup input
+            if (xSpeed == 0)
+            {xSpeed = Mathf.Epsilon;}
+            if (ySpeed == 0)
+            { ySpeed = Mathf.Epsilon; }
+
             for (int i = 0; i < 1000; i++) //only handle 1000 bounces, because lag
             {
                 //find out how far until it hits a wall and which one
                 float xTime, yTime,zTime;
                 if (xSpeed > 0)
-                { xTime = Mathf.Abs(xBall - upper) / xSpeed; }
+                { xTime = Mathf.Abs((xBall - upper) / xSpeed); }
                 else
-                { xTime = Mathf.Abs(xBall - lower) / -xSpeed; }
+                { xTime = Mathf.Abs((xBall - lower) / xSpeed); }
                 if (ySpeed > 0)
-                { yTime = Mathf.Abs(yBall - right) / ySpeed; }
+                { yTime = Mathf.Abs((yBall - right) / ySpeed); }
                 else
-                { yTime = Mathf.Abs(yBall - left) / -ySpeed; }
-                zTime = Mathf.Abs((Mathf.Abs(zBall) - Mathf.Abs(zPaddle)) / zSpeed);
+                { yTime = Mathf.Abs((yBall - left) / ySpeed); }
+                zTime = Mathf.Abs((zBall - zPaddle) / zSpeed);
 
                 Vector3 before = new Vector3(xBall, yBall, zBall);
 
@@ -85,7 +91,7 @@ public class PaddleAIPerfect : PaddleInputParent
                     zBall = zPaddle;
                     xBall = xBall + xSpeed * zTime;
                     yBall = yBall + ySpeed * zTime;
-
+                    Debug.DrawLine(before, new Vector3(xBall, yBall, zBall));
                     break;    
                 }
 

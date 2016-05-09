@@ -96,8 +96,8 @@ public class BallBehavior : MonoBehaviour {
 				if (Mathf.Abs(y - paddlePlayer.position.y) < paddleSize + ballSize)
                 {
                     zSpeed = -Mathf.Abs(zSpeed);
-					xSpeed = (x - paddlePlayer.position.x) / 5;
-					ySpeed = (y - paddlePlayer.position.y) / 5;
+					xSpeed = (x - paddlePlayer.position.x) * -zSpeed / 5;
+					ySpeed = (y - paddlePlayer.position.y) * -zSpeed / 5;
                 }
             }
         }
@@ -109,8 +109,8 @@ public class BallBehavior : MonoBehaviour {
 				if (Mathf.Abs(y - paddleAI.position.y) < paddleSize + ballSize)
                 {
                     zSpeed = Mathf.Abs(zSpeed);
-					xSpeed = (x - paddleAI.position.x) / 5;
-					ySpeed = (y - paddleAI.position.y) / 5;
+					xSpeed = (x - paddleAI.position.x) * zSpeed / 5;
+					ySpeed = (y - paddleAI.position.y) * zSpeed / 5;
                 }
             }
         }
