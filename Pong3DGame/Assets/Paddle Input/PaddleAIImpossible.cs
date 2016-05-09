@@ -10,8 +10,6 @@ public class PaddleAIImpossible : PaddleInputParent
     private float lower;
     private float left;
     private float right;
-    private float back;
-    private float forward;
     private float paddleSize;
     private float ballSize;
 
@@ -25,8 +23,6 @@ public class PaddleAIImpossible : PaddleInputParent
         lower   = ballVars.lowerBound.position.y + ballSize;
         left    = ballVars.leftBound.position.x  + ballSize;
         right   = ballVars.rightBound.position.x - ballSize;
-        back    = ballVars.backBound.position.z;
-        forward = ballVars.forwardBound.position.z;
     }
 
     // Use this for initialization
@@ -43,7 +39,7 @@ public class PaddleAIImpossible : PaddleInputParent
         float zSpeed = ballVars.zSpeed;
         float targetX, targetY;
 
-        if (Mathf.Sign(zSpeed) > Mathf.Sign(zPaddle)) //if going towards the player just head towards the center
+        if (Mathf.Sign(zSpeed) != Mathf.Sign(zPaddle)) //if going towards the player just head towards the center
         {
             targetX = 0;
             targetY = 0;

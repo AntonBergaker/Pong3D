@@ -20,11 +20,8 @@ public class CameraFollow : MonoBehaviour {
 
         float targetX, targetY;
 
-        targetX = Mathf.Lerp(ball.position.x  , 0, 0.5F); //get the center point of ball, paddle and the middle
-        targetX = Mathf.Lerp(paddle.position.x, targetX, 0.33F);
-
-        targetY = Mathf.Lerp(ball.position.y, 0, 0.5F);
-        targetY = Mathf.Lerp(paddle.position.y, targetY, 0.33F);
+        targetX = (ball.position.x + paddle.position.x + 0) / 3; //get the center point of ball, paddle and the middle of the playing field
+        targetY = (ball.position.y + paddle.position.y + 0) / 3;
 
         x = Mathf.Lerp(targetX, x, 1 - Time.deltaTime); //not framerate independant but close enough
         y = Mathf.Lerp(targetY, y, 1 - Time.deltaTime);

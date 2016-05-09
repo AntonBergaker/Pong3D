@@ -319,7 +319,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 330430328}
   - 33: {fileID: 330430327}
-  - 65: {fileID: 330430326}
   - 23: {fileID: 330430325}
   - 114: {fileID: 330430324}
   - 198: {fileID: 330430331}
@@ -343,8 +342,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 330430328}
-  paddlePlayer: {fileID: 1973669240}
-  paddleAI: {fileID: 495205958}
+  paddlePlayer1: {fileID: 1973669235}
+  paddlePlayer2: {fileID: 495205953}
   upperBound: {fileID: 755597493}
   lowerBound: {fileID: 1207617372}
   leftBound: {fileID: 4397531}
@@ -383,18 +382,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &330430326
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 330430323}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &330430327
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1983,7 +1970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 330430323}
   ballStartSpeed: 0.5
-  ballSecondIncrease: 0.2
+  ballSecondIncrease: 0.1
   player1Score: 0
   player2Score: 0
   scoreFont:
@@ -2066,10 +2053,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 495205958}
   - 33: {fileID: 495205957}
-  - 65: {fileID: 495205956}
   - 23: {fileID: 495205955}
   - 114: {fileID: 495205959}
   - 114: {fileID: 495205954}
+  - 114: {fileID: 495205961}
+  - 114: {fileID: 495205960}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Untagged
@@ -2116,18 +2104,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &495205956
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 495205953}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &495205957
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2163,10 +2139,37 @@ MonoBehaviour:
   lowerBound: {fileID: 1207617372}
   leftBound: {fileID: 4397531}
   rightBound: {fileID: 501715853}
-  inputScript: {fileID: 495205954}
+  cubeRenderer: {fileID: 0}
+  inputScript: {fileID: 495205961}
   bound: 15
   speed: 1
   acceleration: 9
+--- !u!114 &495205960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 495205953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f67440521532e42996d18e681c3ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballVars: {fileID: 330430324}
+  movementVars: {fileID: 495205959}
+--- !u!114 &495205961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 495205953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4524b30e98bfb74b97dc85edc551a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballVars: {fileID: 330430324}
+  movementVars: {fileID: 495205959}
 --- !u!1 &501715849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,10 +3455,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1973669240}
   - 33: {fileID: 1973669239}
-  - 65: {fileID: 1973669238}
   - 23: {fileID: 1973669237}
   - 114: {fileID: 1973669236}
   - 114: {fileID: 1973669241}
+  - 114: {fileID: 1973669238}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -3479,7 +3482,8 @@ MonoBehaviour:
   lowerBound: {fileID: 1207617372}
   leftBound: {fileID: 4397531}
   rightBound: {fileID: 501715853}
-  inputScript: {fileID: 1973669241}
+  cubeRenderer: {fileID: 1973669237}
+  inputScript: {fileID: 1973669238}
   bound: 15
   speed: 1
   acceleration: 9
@@ -3509,18 +3513,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1973669238
-BoxCollider:
+--- !u!114 &1973669238
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1973669235}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f67440521532e42996d18e681c3ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballVars: {fileID: 330430324}
+  movementVars: {fileID: 1973669236}
 --- !u!33 &1973669239
 MeshFilter:
   m_ObjectHideFlags: 0

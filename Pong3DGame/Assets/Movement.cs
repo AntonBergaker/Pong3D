@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour {
     public Transform lowerBound;
     public Transform leftBound;
     public Transform rightBound;
+    public Renderer cubeRenderer;
 
     public PaddleInputParent inputScript;
 
@@ -20,12 +21,15 @@ public class Movement : MonoBehaviour {
     private float z;
     private float xSpeed;
     private float ySpeed;
+    private float bounceTimer;
+    private float paddleSize;
 
 	// Use this for initialization
 	void Start () {
         x = body.transform.position.x;
         y = body.transform.position.y;
         z = body.transform.position.z;
+        paddleSize = body.localScale.x / 2F;
 	}
 	
 	// Update is called once per frame
@@ -47,5 +51,17 @@ public class Movement : MonoBehaviour {
         y = Mathf.Clamp(y, -bound, bound);
 
         body.transform.position = new Vector3(x, y, z);
+
+        //increase the size slightly when bouncing
+        if (bounceTimer > 0)
+        {
+            body.localScale = new Vector3(paddleSize*2 + bounceTimer,paddleSize*2 + bounceTimer,1);
+            bounceTimer -= Time.deltaTime;
+        }
 	}
+
+    public void Bounce()
+    {
+        bounceTimer = 2F;
+    }
 }
