@@ -8,7 +8,6 @@ public class Movement : MonoBehaviour {
     public Transform lowerBound;
     public Transform leftBound;
     public Transform rightBound;
-    public Renderer cubeRenderer;
 
     public PaddleInputParent inputScript;
 
@@ -29,7 +28,7 @@ public class Movement : MonoBehaviour {
         x = body.transform.position.x;
         y = body.transform.position.y;
         z = body.transform.position.z;
-        paddleSize = body.localScale.x / 2F;
+        paddleSize = body.localScale.x;
 	}
 	
 	// Update is called once per frame
@@ -55,13 +54,33 @@ public class Movement : MonoBehaviour {
         //increase the size slightly when bouncing
         if (bounceTimer > 0)
         {
-            body.localScale = new Vector3(paddleSize*2 + bounceTimer,paddleSize*2 + bounceTimer,1);
-            bounceTimer -= Time.deltaTime;
+            float size;
+            if (bounceTimer > 0.8F)
+            { size = quadOutIn(paddleSize, paddleSize + 1.5F, 1F-bounceTimer, 0.2F); }
+            else
+            { size = quadOutIn(paddleSize + 1.5F, paddleSize, 0.8F-bounceTimer, 0.8F); }
+            
+            body.localScale = new Vector3(size,size,1);
+            bounceTimer -= Time.deltaTime*2;
         }
+        else
+        { body.localScale = new Vector3(paddleSize, paddleSize, 1); }
 	}
 
     public void Bounce()
     {
-        bounceTimer = 2F;
+        bounceTimer = 1F;
+    }
+
+
+    float quadOutIn(float start, float end, float time, float duration)
+    {
+        float c = end - start;
+
+        time /= duration / 2;
+        if (time < 1)
+        { return (c / 2 * time * time + start); }
+        time--;
+        return (-c / 2 * (time * (time - 2) - 1) + start);
     }
 }

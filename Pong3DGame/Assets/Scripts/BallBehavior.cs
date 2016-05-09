@@ -12,6 +12,8 @@ public class BallBehavior : MonoBehaviour {
     public Transform rightBound;
     public Transform forwardBound;
     public Transform backBound;
+    public AudioClip[] bounceSounds;
+    public AudioClip paddleSound;
 
     [HideInInspector]
     public float xSpeed;
@@ -71,31 +73,37 @@ public class BallBehavior : MonoBehaviour {
         {
             x = right-ballSize;
             xSpeed = -Mathf.Abs(xSpeed);
+            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position); //play random audio from array
         }
         if (x-ballSize < left)
         {
             x = left + ballSize;
             xSpeed = Mathf.Abs(xSpeed);
+            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
         }
         if (y-ballSize < lower)
         {
             y = lower+ballSize;
             ySpeed = Mathf.Abs(ySpeed);
+            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
         }
         if (y+ballSize > upper)
         {
             y = upper-ballSize;
             ySpeed = -Mathf.Abs(ySpeed);
+            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
         }
         if (z - ballSize < forward)
         {
             z = forward + ballSize;
             zSpeed = Mathf.Abs(zSpeed);
+            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
         }
         if (z + ballSize > back)
         {
             z = back - ballSize;
             zSpeed = -Mathf.Abs(zSpeed);
+            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
         }
 
         if (Mathf.Abs(z - bodyPlayer1.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always catches the bounce
@@ -107,6 +115,7 @@ public class BallBehavior : MonoBehaviour {
                     zSpeed = -Mathf.Abs(zSpeed);
                     xSpeed = (x - bodyPlayer1.position.x) * -zSpeed / 5;
                     ySpeed = (y - bodyPlayer1.position.y) * -zSpeed / 5;
+                    AudioSource.PlayClipAtPoint(paddleSound, body.transform.position);
                     varsPlayer1.Bounce(); //do particle effects at the paddle
                 }
             }
@@ -121,6 +130,7 @@ public class BallBehavior : MonoBehaviour {
                     zSpeed = Mathf.Abs(zSpeed);
                     xSpeed = (x - bodyPlayer2.position.x) * zSpeed / 5;
                     ySpeed = (y - bodyPlayer2.position.y) * zSpeed / 5;
+                    AudioSource.PlayClipAtPoint(paddleSound, body.transform.position);
                     varsPlayer2.Bounce();
                 }
             }
