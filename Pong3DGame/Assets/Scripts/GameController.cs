@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour {
 
     public GameObject ball;
 	public GameObject explosion;
+    public GameObject confetti;
     public AudioSource explosionSound;
     public float ballStartSpeed;
     public float ballSecondIncrease;
@@ -84,6 +85,8 @@ public class GameController : MonoBehaviour {
         explosionSound.Play();
 		GameObject temp = (GameObject)Instantiate(explosion, new Vector3(ballVars.x, ballVars.y, ballVars.z), new Quaternion(0, 0, 0, 0));
         Destroy(temp, 3F); //destroy it after 3 seconds when it's done playing
+        temp = (GameObject)Instantiate(confetti, new Vector3(ballVars.x, ballVars.y, ballVars.z), new Quaternion(0, 0, 0, 0));
+        Destroy(temp, 5F); //destroy it after 3 seconds when it's done playing
 	}
 
 	void ResetScores()

@@ -44,9 +44,9 @@ public class BallBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        zSpeed = 0.5F;
-        ySpeed = 0.0F;
-        xSpeed = 0.0F;
+        zSpeed = Choose(new float[] {-1,1});
+        ySpeed = Random.Range(-0.5F,0.5F);
+        xSpeed = Random.Range(-0.5F,0.5F);
 
         upper = upperBound.position.y;
         lower = lowerBound.position.y;
@@ -73,37 +73,37 @@ public class BallBehavior : MonoBehaviour {
         {
             x = right-ballSize;
             xSpeed = -Mathf.Abs(xSpeed);
-            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position); //play random audio from array
+            BounceSound(); //play sound when bouncing
         }
         if (x-ballSize < left)
         {
             x = left + ballSize;
             xSpeed = Mathf.Abs(xSpeed);
-            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
+            BounceSound();
         }
         if (y-ballSize < lower)
         {
             y = lower+ballSize;
             ySpeed = Mathf.Abs(ySpeed);
-            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
+            BounceSound();
         }
         if (y+ballSize > upper)
         {
             y = upper-ballSize;
             ySpeed = -Mathf.Abs(ySpeed);
-            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
+            BounceSound();
         }
         if (z - ballSize < forward)
         {
             z = forward + ballSize;
             zSpeed = Mathf.Abs(zSpeed);
-            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
+            BounceSound();
         }
         if (z + ballSize > back)
         {
             z = back - ballSize;
             zSpeed = -Mathf.Abs(zSpeed);
-            AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);
+            BounceSound();
         }
 
         if (zSpeed > 0)
@@ -144,4 +144,12 @@ public class BallBehavior : MonoBehaviour {
 
         body.transform.position = new Vector3(x, y, z);
     }
-}
+
+    float Choose(params float[] s)
+    {
+        return s[Random.Range(0,s.Length)];
+    }
+
+    void BounceSound()
+        { AudioSource.PlayClipAtPoint(bounceSounds[Random.Range(0, bounceSounds.Length - 1)], body.transform.position);} //choose random sound effect from array
+    }

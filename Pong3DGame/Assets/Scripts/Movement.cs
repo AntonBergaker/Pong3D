@@ -56,9 +56,9 @@ public class Movement : MonoBehaviour {
         {
             float size;
             if (bounceTimer > 0.8F)
-            { size = quadOutIn(paddleSize, paddleSize + 1.5F, 1F-bounceTimer, 0.2F); }
+            { size = quadOutIn(paddleSize, paddleSize + 2F, 1F-bounceTimer, 0.2F); }
             else
-            { size = quadOutIn(paddleSize + 1.5F, paddleSize, 0.8F-bounceTimer, 0.8F); }
+            { size = quadOutIn(paddleSize + 2F, paddleSize, 0.8F-bounceTimer, 0.8F); }
             
             body.localScale = new Vector3(size,size,1);
             bounceTimer -= Time.deltaTime*2;
