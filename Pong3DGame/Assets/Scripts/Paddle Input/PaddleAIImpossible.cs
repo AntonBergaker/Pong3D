@@ -44,6 +44,11 @@ public class PaddleAIImpossible : PaddleInputParent
             targetX = 0;
             targetY = 0;
         }
+        else if (Mathf.Abs(zBall) > Mathf.Abs(movementVars.body.position.z)) //if he missed
+        { 
+            targetX = 0;
+            targetY = 0;
+        }
         else
         {
             //cleanup input
@@ -68,7 +73,7 @@ public class PaddleAIImpossible : PaddleInputParent
 
                 Vector3 before = new Vector3(xBall, yBall, zBall);
 
-                if (xTime < yTime && xTime < zTime) //if x is closest
+                if (xTime < yTime && xTime < zTime) //if x is smallest
                 {
                     zBall = zBall + zSpeed * xTime;
                     xBall = xBall + xSpeed * xTime;

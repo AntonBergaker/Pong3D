@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ConfettiColor : MonoBehaviour {
 
-    ParticleSystem particleSystem;
+    ParticleSystem particleSys;
     ParticleSystem.Particle[] particles;
 
     bool triggered = false;
@@ -12,17 +12,17 @@ public class ConfettiColor : MonoBehaviour {
 	void LateUpdate () {
         if (triggered == false)
         {
-            particleSystem = GetComponent<ParticleSystem>();
-            particles = new ParticleSystem.Particle[particleSystem.maxParticles];
+            particleSys = GetComponent<ParticleSystem>();
+            particles = new ParticleSystem.Particle[particleSys.maxParticles];
 
-            int length = particleSystem.GetParticles(particles);
+            int length = particleSys.GetParticles(particles);
 
             for (int i = 0; i < length; i++)
             {
                 particles[i].startColor = Color.HSVToRGB(Random.value, 1, 1);
             }
 
-            particleSystem.SetParticles(particles, length);
+            particleSys.SetParticles(particles, length);
             triggered = true;
         }
 	}
