@@ -190,10 +190,13 @@ MonoBehaviour:
   difficulities:
   - name: Normal
     script: {fileID: 0}
+    xTime: 0
   - name: Hard
     script: {fileID: 0}
+    xTime: 0
   - name: Impossible
-    script: {fileID: 0}
+    script: {fileID: 1973669238}
+    xTime: 0
   font:
     m_Name: 
     m_Normal:
@@ -253,6 +256,11 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
+  paddleMovement: {fileID: 495205959}
+  active: 1
+  background: {fileID: 2800000, guid: 4d7237f34f146d449af2274148847876, type: 3}
+  robert: {fileID: 2800000, guid: df2e4834901b71049bbfb27894730156, type: 3}
 --- !u!4 &38802613
 Transform:
   m_ObjectHideFlags: 0
