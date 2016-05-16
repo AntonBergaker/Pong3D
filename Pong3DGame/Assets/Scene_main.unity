@@ -189,10 +189,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulities:
   - name: Normal
-    script: {fileID: 0}
+    script: {fileID: 495205954}
     xTime: 0
   - name: Hard
-    script: {fileID: 0}
+    script: {fileID: 495205956}
     xTime: 0
   - name: Impossible
     script: {fileID: 1973669238}
@@ -256,7 +256,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  highlightColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
   paddleMovement: {fileID: 495205959}
   active: 1
   background: {fileID: 2800000, guid: 4d7237f34f146d449af2274148847876, type: 3}
@@ -713,6 +713,7 @@ GameObject:
   - 23: {fileID: 495205955}
   - 114: {fileID: 495205959}
   - 114: {fileID: 495205954}
+  - 114: {fileID: 495205956}
   - 114: {fileID: 495205960}
   m_Layer: 0
   m_Name: Player 2
@@ -760,6 +761,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &495205956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 495205953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4524b30e98bfb74b97dc85edc551a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballVars: {fileID: 330430324}
+  movementVars: {fileID: 495205959}
 --- !u!33 &495205957
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -797,7 +811,7 @@ MonoBehaviour:
   rightBound: {fileID: 501715853}
   inputScript: {fileID: 495205960}
   bound: 15
-  speed: 0.1
+  speed: 1
   acceleration: 9
 --- !u!114 &495205960
 MonoBehaviour:
