@@ -160,119 +160,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1770547043}
   m_RootOrder: 3
---- !u!1 &38802611
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 38802613}
-  - 114: {fileID: 38802612}
-  m_Layer: 0
-  m_Name: Menu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &38802612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 38802611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83f352a36552237499aae732c6dd5704, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  difficulities:
-  - name: Normal
-    script: {fileID: 495205954}
-    xTime: 0
-  - name: Hard
-    script: {fileID: 495205956}
-    xTime: 0
-  - name: Impossible
-    script: {fileID: 1973669238}
-    xTime: 0
-  font:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: 1e39d1961dd329941a7dbb93c7a0b465, type: 3}
-    m_FontSize: 25
-    m_FontStyle: 0
-    m_Alignment: 3
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
-  paddleMovement: {fileID: 495205959}
-  active: 1
-  background: {fileID: 2800000, guid: 4d7237f34f146d449af2274148847876, type: 3}
-  robert: {fileID: 2800000, guid: df2e4834901b71049bbfb27894730156, type: 3}
---- !u!4 &38802613
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 38802611}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
 --- !u!1 &216835823
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +413,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 438159901}
   - 114: {fileID: 438159900}
+  - 114: {fileID: 438159903}
   - 82: {fileID: 438159902}
   m_Layer: 0
   m_Name: Control
@@ -553,6 +441,7 @@ MonoBehaviour:
   ballSecondIncrease: 0.05
   player1Score: 0
   player2Score: 0
+  freezeBall: 0
   scoreToWin: 11
   leadToWin: 2
   screenMessage: 
@@ -701,6 +590,91 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &438159903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 438159899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f352a36552237499aae732c6dd5704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulities:
+  - name: Normal
+    script: {fileID: 495205954}
+    xTime: 0
+  - name: Hard
+    script: {fileID: 495205956}
+    xTime: 0
+  - name: Impossible
+    script: {fileID: 495205960}
+    xTime: 0
+  font:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 12800000, guid: 1e39d1961dd329941a7dbb93c7a0b465, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_Alignment: 3
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+  paddleMovement: {fileID: 495205959}
+  active: 1
+  background: {fileID: 2800000, guid: 4d7237f34f146d449af2274148847876, type: 3}
+  robert: {fileID: 2800000, guid: df2e4834901b71049bbfb27894730156, type: 3}
 --- !u!1 &495205953
 GameObject:
   m_ObjectHideFlags: 0

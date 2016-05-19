@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour {
     public int player1Score = 0;
     [HideInInspector]
     public int player2Score = 0;
+    [HideInInspector]
+    public bool freezeBall = false;
+
     public int scoreToWin;
     public int leadToWin;
 
@@ -26,9 +29,12 @@ public class GameController : MonoBehaviour {
     private float ballTimer = 0;
 	private float ballBound = 80;
 
+    private Menu menu;
+
 	// Use this for initialization
 	void Start () {
         ballVars = ball.GetComponent<BallBehavior>();
+        menu = GetComponent<Menu>();
 		screenMessage = "";
 	}
 	
@@ -68,7 +74,20 @@ public class GameController : MonoBehaviour {
             ballTimer = 0;
         }
 
+        if (freezeBall) //stop the ball from moving if frozen
+        { 
+            ballVars.z = 0;
+            ballTimer = 0F;
+        }
+
         ballVars.zSpeed = Mathf.Sign(ballVars.zSpeed) * (ballStartSpeed + ballTimer * ballSecondIncrease); //set the ball speed after the timer
+
+        //if paused
+        if (Input.GetKeyDown("escape"))
+        {
+            menu.active = true;
+            freezeBall = true;
+        }
 	}
 
     void OnGUI()

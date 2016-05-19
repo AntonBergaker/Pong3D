@@ -20,12 +20,14 @@ public class Menu : MonoBehaviour {
     public Texture background;
     public Texture robert;
 
+    private GameController controller;
+
     int selected = 0;
 
 	// Use this for initialization
 	void Start () {
-        //Freeze the world
-        
+        controller = GetComponent<GameController>();
+        controller.freezeBall = true;
 	}
 	
 	// Update is called once per frame
@@ -39,10 +41,11 @@ public class Menu : MonoBehaviour {
 
             selected = (selected + difficulities.Length) % difficulities.Length;
 
-            if (Input.GetKeyDown("enter") || Input.GetKeyDown("space"))
+            if (Input.GetKeyDown("return") || Input.GetKeyDown("space"))
             {
                 paddleMovement.inputScript = difficulities[selected].script;
                 active = false;
+                controller.freezeBall = false;
             }
         }
 	}

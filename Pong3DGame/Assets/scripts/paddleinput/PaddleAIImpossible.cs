@@ -39,12 +39,15 @@ public class PaddleAIImpossible : PaddleInputParent
         float zSpeed = ballVars.zSpeed;
         float targetX, targetY;
 
+        Debug.Log("speed " + zSpeed);
+        Debug.Log("paddle" + zPaddle);
+
         if (Mathf.Sign(zSpeed) != Mathf.Sign(zPaddle)) //if going towards the player just head towards the center
         {
             targetX = 0;
             targetY = 0;
         }
-        else if (Mathf.Abs(zBall) > Mathf.Abs(movementVars.body.position.z)) //if he missed
+        else if (Mathf.Abs(zBall) > Mathf.Abs(zPaddle)) //if he missed
         { 
             targetX = 0;
             targetY = 0;
