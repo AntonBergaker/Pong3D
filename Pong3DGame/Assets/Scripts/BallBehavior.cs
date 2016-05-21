@@ -28,6 +28,8 @@ public class BallBehavior : MonoBehaviour {
     [HideInInspector]
     public float z;
 
+    public bool active;
+
     private Transform bodyPlayer1;
     private Transform bodyPlayer2;
     private Movement varsPlayer1;
@@ -65,84 +67,87 @@ public class BallBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        x += xSpeed;
-        y += ySpeed;
-        z += zSpeed;
+        if (active)
+        {
+            x += xSpeed;
+            y += ySpeed;
+            z += zSpeed;
 
-        if (x+ballSize > right)
-        {
-            x = right-ballSize;
-            xSpeed = -Mathf.Abs(xSpeed);
-            BounceSound(); //play sound when bouncing
-        }
-        if (x-ballSize < left)
-        {
-            x = left + ballSize;
-            xSpeed = Mathf.Abs(xSpeed);
-            BounceSound();
-        }
-        if (y-ballSize < lower)
-        {
-            y = lower+ballSize;
-            ySpeed = Mathf.Abs(ySpeed);
-            BounceSound();
-        }
-        if (y+ballSize > upper)
-        {
-            y = upper-ballSize;
-            ySpeed = -Mathf.Abs(ySpeed);
-            BounceSound();
-        }
-        if (z - ballSize < forward)
-        {
-            z = forward + ballSize;
-            zSpeed = Mathf.Abs(zSpeed);
-            BounceSound();
-        }
-        if (z + ballSize > back)
-        {
-            z = back - ballSize;
-            zSpeed = -Mathf.Abs(zSpeed);
-            BounceSound();
-        }
-
-        if (zSpeed > 0)
-        {
-            if (Mathf.Abs(z - bodyPlayer1.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always catches the bounce
+            if (x+ballSize > right)
             {
-                if (Mathf.Abs(x - bodyPlayer1.position.x) < paddleSize + ballSize)
+                x = right-ballSize;
+                xSpeed = -Mathf.Abs(xSpeed);
+                BounceSound(); //play sound when bouncing
+            }
+            if (x-ballSize < left)
+            {
+                x = left + ballSize;
+                xSpeed = Mathf.Abs(xSpeed);
+                BounceSound();
+            }
+            if (y-ballSize < lower)
+            {
+                y = lower+ballSize;
+                ySpeed = Mathf.Abs(ySpeed);
+                BounceSound();
+            }
+            if (y+ballSize > upper)
+            {
+                y = upper-ballSize;
+                ySpeed = -Mathf.Abs(ySpeed);
+                BounceSound();
+            }
+            if (z - ballSize < forward)
+            {
+                z = forward + ballSize;
+                zSpeed = Mathf.Abs(zSpeed);
+                BounceSound();
+            }
+            if (z + ballSize > back)
+            {
+                z = back - ballSize;
+                zSpeed = -Mathf.Abs(zSpeed);
+                BounceSound();
+            }
+
+            if (zSpeed > 0)
+            {
+                if (Mathf.Abs(z - bodyPlayer1.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always catches the bounce
                 {
-                    if (Mathf.Abs(y - bodyPlayer1.position.y) < paddleSize + ballSize)
+                    if (Mathf.Abs(x - bodyPlayer1.position.x) < paddleSize + ballSize)
                     {
-                        zSpeed = -Mathf.Abs(zSpeed);
-                        xSpeed = (x - bodyPlayer1.position.x) * -zSpeed / 5;
-                        ySpeed = (y - bodyPlayer1.position.y) * -zSpeed / 5;
-                        AudioSource.PlayClipAtPoint(paddleSound, body.transform.position);
-                        varsPlayer1.Bounce(); //do particle effects at the paddle
+                        if (Mathf.Abs(y - bodyPlayer1.position.y) < paddleSize + ballSize)
+                        {
+                            zSpeed = -Mathf.Abs(zSpeed);
+                            xSpeed = (x - bodyPlayer1.position.x) * -zSpeed / 5;
+                            ySpeed = (y - bodyPlayer1.position.y) * -zSpeed / 5;
+                            AudioSource.PlayClipAtPoint(paddleSound, body.transform.position);
+                            varsPlayer1.Bounce(); //do particle effects at the paddle
+                        }
                     }
                 }
             }
-        }
 
-        if (zSpeed < 0)
-        {
-            if (Mathf.Abs(z - bodyPlayer2.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always catches the bounce
+            if (zSpeed < 0)
             {
-                if (Mathf.Abs(x - bodyPlayer2.position.x) < paddleSize + ballSize)
+                if (Mathf.Abs(z - bodyPlayer2.position.z) < Mathf.Abs(zSpeed) + ballSize) //compare with speed to make sure it always catches the bounce
                 {
-                    if (Mathf.Abs(y - bodyPlayer2.position.y) < paddleSize + ballSize)
+                    if (Mathf.Abs(x - bodyPlayer2.position.x) < paddleSize + ballSize)
                     {
-                        zSpeed = Mathf.Abs(zSpeed);
-                        xSpeed = (x - bodyPlayer2.position.x) * zSpeed / 5;
-                        ySpeed = (y - bodyPlayer2.position.y) * zSpeed / 5;
-                        AudioSource.PlayClipAtPoint(paddleSound, body.transform.position);
-                        varsPlayer2.Bounce();
+                        if (Mathf.Abs(y - bodyPlayer2.position.y) < paddleSize + ballSize)
+                        {
+                            zSpeed = Mathf.Abs(zSpeed);
+                            xSpeed = (x - bodyPlayer2.position.x) * zSpeed / 5;
+                            ySpeed = (y - bodyPlayer2.position.y) * zSpeed / 5;
+                            AudioSource.PlayClipAtPoint(paddleSound, body.transform.position);
+                            varsPlayer2.Bounce();
+                        }
                     }
                 }
             }
-        }
 
-        body.transform.position = new Vector3(x, y, z);
+            body.transform.position = new Vector3(x, y, z);
+        }
     }
 
     float Choose(params float[] s)

@@ -21,13 +21,15 @@ public class Menu : MonoBehaviour {
     public Texture robert;
 
     private GameController controller;
+    public BallBehavior ball;
 
     int selected = 0;
+    bool paused = false;
 
 	// Use this for initialization
 	void Start () {
         controller = GetComponent<GameController>();
-        controller.freezeBall = true;
+        ball.active = false;
 	}
 	
 	// Update is called once per frame
@@ -45,7 +47,18 @@ public class Menu : MonoBehaviour {
             {
                 paddleMovement.inputScript = difficulities[selected].script;
                 active = false;
-                controller.freezeBall = false;
+                controller.ResetGame();
+                ball.active = true;
+                ball.x = 0;
+                ball.y = 0;
+                ball.z = 0;
+                paused = true;
+            }
+
+            if (paused && Input.GetKeyDown("p") )
+            { 
+                ball.active = true;
+                active = false;
             }
         }
 	}

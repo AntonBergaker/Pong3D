@@ -358,6 +358,7 @@ MonoBehaviour:
   x: 0
   y: 0
   z: 0
+  active: 0
 --- !u!23 &330430325
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -441,7 +442,6 @@ MonoBehaviour:
   ballSecondIncrease: 0.05
   player1Score: 0
   player2Score: 0
-  freezeBall: 0
   scoreToWin: 11
   leadToWin: 2
   screenMessage: 
@@ -675,6 +675,7 @@ MonoBehaviour:
   active: 1
   background: {fileID: 2800000, guid: 4d7237f34f146d449af2274148847876, type: 3}
   robert: {fileID: 2800000, guid: df2e4834901b71049bbfb27894730156, type: 3}
+  ball: {fileID: 330430324}
 --- !u!1 &495205953
 GameObject:
   m_ObjectHideFlags: 0

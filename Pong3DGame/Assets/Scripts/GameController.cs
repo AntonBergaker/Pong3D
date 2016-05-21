@@ -15,8 +15,6 @@ public class GameController : MonoBehaviour {
     public int player1Score = 0;
     [HideInInspector]
     public int player2Score = 0;
-    [HideInInspector]
-    public bool freezeBall = false;
 
     public int scoreToWin;
     public int leadToWin;
@@ -68,25 +66,17 @@ public class GameController : MonoBehaviour {
 				ResetScores ();
 			}
 
-
-            ballVars.xSpeed = Random.Range(-0.2F, 0.2F);
-            ballVars.ySpeed = Random.Range(-0.2F, 0.2F);
-            ballTimer = 0;
-        }
-
-        if (freezeBall) //stop the ball from moving if frozen
-        { 
-            ballVars.z = 0;
-            ballTimer = 0F;
+            ResetGame();
         }
 
         ballVars.zSpeed = Mathf.Sign(ballVars.zSpeed) * (ballStartSpeed + ballTimer * ballSecondIncrease); //set the ball speed after the timer
 
         //if paused
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown("p") && menu.active == false)
         {
             menu.active = true;
-            freezeBall = true;
+            ballVars.active = false;
+            Input.ResetInputAxes();
         }
 	}
 
@@ -113,4 +103,10 @@ public class GameController : MonoBehaviour {
 		player1Score = 0;
 		player2Score = 0;
 	}
+    public void ResetGame()
+    {
+        ballVars.xSpeed = Random.Range(-0.2F, 0.2F);
+        ballVars.ySpeed = Random.Range(-0.2F, 0.2F);
+        ballTimer = 0;
+    }
 }
