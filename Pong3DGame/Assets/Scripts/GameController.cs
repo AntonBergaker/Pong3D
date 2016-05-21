@@ -70,13 +70,13 @@ public class GameController : MonoBehaviour {
         }
 
         ballVars.zSpeed = Mathf.Sign(ballVars.zSpeed) * (ballStartSpeed + ballTimer * ballSecondIncrease); //set the ball speed after the timer
-
+        
         //if paused
         if (Input.GetKeyDown("p") && menu.active == false)
         {
             menu.active = true;
+            menu.ignoreInput = true;
             ballVars.active = false;
-            Input.ResetInputAxes();
         }
 	}
 

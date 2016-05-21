@@ -23,6 +23,8 @@ public class Menu : MonoBehaviour {
     private GameController controller;
     public BallBehavior ball;
 
+    public bool ignoreInput = false;
+
     int selected = 0;
     bool paused = false;
 
@@ -56,11 +58,14 @@ public class Menu : MonoBehaviour {
                 paused = true;
             }
 
-            if (paused && Input.GetKeyDown("p") )
+            if (paused && Input.GetKeyDown("p") && ignoreInput == false)
             { 
                 ball.active = true;
                 active = false;
             }
+
+
+            ignoreInput = false;
         }
 	}
 
