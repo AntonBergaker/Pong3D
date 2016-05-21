@@ -98,7 +98,7 @@ public class GameController : MonoBehaviour {
         Destroy(temp, 5F); //destroy it after 3 seconds when it's done playing
 	}
 
-	void ResetScores()
+	public void ResetScores()
 	{
 		player1Score = 0;
 		player2Score = 0;

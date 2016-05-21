@@ -47,7 +47,8 @@ public class Menu : MonoBehaviour {
             {
                 paddleMovement.inputScript = difficulities[selected].script;
                 active = false;
-                controller.ResetGame();
+                controller.ResetGame ();
+				controller.ResetScores ();
                 ball.active = true;
                 ball.x = 0;
                 ball.y = 0;
